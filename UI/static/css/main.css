@@ -1,8 +1,22 @@
-.header{
+header{
     background-color: rgb(37, 96, 151);
-    color: white;
     padding: 0.3%;
     margin: 1%;
+    border-bottom: 3px solid red;
+}
+header h1{
+    color: white;
+}
+header a{
+    text-decoration: none;
+    float: right;
+    color: white;
+    margin: 0.5em;
+    border-right: 1px solid white;
+    padding: 0.3em;
+}
+.letterI{
+    color: red;
 }
 .form-content h1{
     text-align: center;
