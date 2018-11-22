@@ -14,11 +14,14 @@ header a{
     float: right;
     color: white;
     margin: 0.3em;
-    border-right: 1px solid white;
+    border-right: 2px solid white;
     padding: 0.3em;
 }
+body{
+    background: rgb(245, 242, 242);
+}
 .content{
-    margin: 15%;
+    margin: 10%;
 }
 .letterI{
     color: red;
@@ -53,6 +56,34 @@ header a{
 }
 .form-content a{
     text-decoration: none;
+}
+.pages-content{
+    margin: 15%;
+}
+.redflag-content{
+    border: 0px;
+    background: white;
+    padding: 5%;
+}
+.redflag-content input{
+    width: 90%;
+    border: 2px solid rgb(37, 96, 151);
+    border-radius: 2em;
+    padding: 1%;
+}
+.redflag-content textarea{
+    width: 90%;
+    border: 2px solid rgb(37, 96, 151);
+}
+.image-upload input{
+    width: 40%;
+}
+.buttons input{
+    background: rgb(37, 96, 151); 
+    color: white;
+}
+.sub input{
+    width: 20%;
 }
 footer{
     left: 0;
