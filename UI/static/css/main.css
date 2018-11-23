@@ -105,7 +105,7 @@ body{
 }
 
 .sub input{
-    width: 20%;
+    width: 30%;
 }
 
 .view-buttons input{
@@ -132,6 +132,10 @@ body{
 .label{
     font-weight: bold;
     color: rgb(37, 96, 151);
+}
+
+item2 a{
+    text-decoration: none;
 }
 
 footer{
