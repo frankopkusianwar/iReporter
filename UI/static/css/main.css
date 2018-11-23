@@ -6,9 +6,11 @@ header{
     background-color: rgb(37, 96, 151);
     border-bottom: 3px solid red;
 }
+
 header h1{
     color: white;
 }
+
 header a{
     text-decoration: none;
     float: right;
@@ -16,20 +18,26 @@ header a{
     margin: 0.3em;
     border-right: 2px solid white;
     padding: 0.3em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
 body{
     background: rgb(245, 242, 242);
 }
+
 .content{
     margin: 10%;
 }
+
 .letterI{
     color: red;
 }
+
 .form-content h1{
     text-align: center;
     color: white;
 }
+
 .form-content{
     background-color: rgb(37, 96, 151);
     border: 1px solid rgb(37, 96, 151);
@@ -39,6 +47,7 @@ body{
     padding: 2%;
     width: 60%;
 }
+
 .form-content input{
     border: 0px;
     border-radius: 2em;
@@ -46,35 +55,47 @@ body{
     width: 100%;
     padding: 2%;
 }
+
 .login-text{
     text-align: center;
     color: white;
 }
+
 .login-text a{
     text-decoration: none;
     color: white;
 }
+
 .form-content a{
     text-decoration: none;
 }
+
 .pages-content{
     margin: 15%;
 }
+
 .redflag-content{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 3%;
     border: 0px;
     background: white;
     padding: 5%;
+    margin: 2%;
 }
+
 .redflag-content input{
     width: 90%;
     border: 2px solid rgb(37, 96, 151);
     border-radius: 2em;
     padding: 1%;
 }
+
 .redflag-content textarea{
     width: 90%;
     border: 2px solid rgb(37, 96, 151);
 }
+
 .image-upload input{
     width: 40%;
 }
@@ -82,9 +103,37 @@ body{
     background: rgb(37, 96, 151); 
     color: white;
 }
+
 .sub input{
     width: 20%;
 }
+
+.view-buttons input{
+    border: none;
+    width: 40%;
+    float: right;
+    margin: 0.2em;
+}
+
+.delete input{
+    background: red;
+    color: white;
+}
+
+.primary-button input{
+    background: rgb(37, 96, 151);
+    color: white;
+}
+
+.redflag-content h1{
+    color: rgb(37, 96, 151);
+}
+
+.label{
+    font-weight: bold;
+    color: rgb(37, 96, 151);
+}
+
 footer{
     left: 0;
     bottom: 0;
@@ -92,7 +141,7 @@ footer{
     width: 100%;
     background-color: black;
     color: white;
-    padding: 1%;
+    padding: 0.2%;
 }
 
 
