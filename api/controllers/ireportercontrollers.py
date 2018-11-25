@@ -1,0 +1,31 @@
+from flask import request, Response, json, jsonify
+from api.models.ireportermodels import User, users
+import uuid
+
+def addUser():
+    user = User()
+    request_data = request.get_json()
+    user.firstName = request_data["firstName"]
+    user.LastName = request_data["lastName"]
+    user.otherNames = request_data["otherNames"]
+    user.email = request_data["email"]
+    user.password = request_data["password"]
+    user.registered = request_data["registered"]
+
+    usersData = {
+        "userId": len(users)+1,
+        "firstName": user.firstName,
+        "lastName": user.lastName,
+        "otherNames": user.otherNames,
+        "email": user.email,
+        "password": user.password,
+        "registered": user.registered,
+        "public_userId": str(uuid.uuid4())
+        }
+    users.append(usersData)
+    return jsonify({
+                    "data":users,
+                    "status":201,
+                    "id":usersData['userId'],
+                    "message":"user created successully"
+                    })
