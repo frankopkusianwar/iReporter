@@ -1,5 +1,5 @@
 from flask import Blueprint
-from api.controllers.ireportercontrollers import addUser, addIncident
+from api.controllers.ireportercontrollers import addUser, addIncident, getAllIncidents
 
 bp = Blueprint("ireporterViews", __name__, url_prefix="/api/v1")
 
@@ -13,7 +13,7 @@ def createIncident():
 
 @bp.route("/red-flags", methods=["GET"])
 def get_all_red_flag_records():
-    pass
+    return getAllIncidents()
 
 @bp.route("/red-flags/<int:red_flag_id>", methods=["GET"])
 def get_specific_redflag():

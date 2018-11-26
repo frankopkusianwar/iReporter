@@ -56,3 +56,9 @@ def addIncident():
                     "id":incidentData['incidentId'],
                     "message":"Incident created successully"
                     })
+
+def getAllIncidents():
+    return jsonify({
+                    "status":201,
+                    "data":incidents
+                    })
