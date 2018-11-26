@@ -71,3 +71,13 @@ def searchId(search_item, list_of_Items):
                     "status":201,
                     "data":search_list
                     })
+
+def deleteId(search_item, list_of_Items):
+    for item in list_of_Items:
+        [list_of_Items.remove(item) for key in item if item[key] == search_item]
+    return jsonify({
+                    "status":200,
+                    "id": search_item,
+                    "data":incidents,
+                    "message":"red-flag record deleted successfully"
+                    })
