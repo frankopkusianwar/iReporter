@@ -62,3 +62,12 @@ def getAllIncidents():
                     "status":201,
                     "data":incidents
                     })
+
+def searchId(search_item, list_of_Items):
+    search_list = []
+    for item in list_of_Items:
+        [search_list.append(item) for key in item if item[key] == search_item]
+    return jsonify({
+                    "status":201,
+                    "data":search_list
+                    })
