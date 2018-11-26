@@ -13,4 +13,19 @@ class User:
         self.password = password
         self.registered = registered
 
-users = []        
+users = []
+
+class Incident:
+    def __init__(self, incidentId=int, createdOn="", createdBy="", incidentType="",
+                location="", status="draft", images=[], 
+                comment=""):
+        self.incidentId = incidentId
+        self.createdOn = createdOn
+        self.createdBy = createdBy
+        self.incidentType = incidentType
+        self.location = location
+        self.status = status
+        self.images = images
+
+incidents = []    
+        
