@@ -70,7 +70,8 @@ def add_red_flag():
             "latitude": inc.latitude,
             "longitude": inc.longitude,
             "image": inc.images.split(","),
-            "status": inc.status
+            "status": inc.status,
+            "comment": ""
             }
     incidents.append(incident_data)
     return jsonify({
@@ -93,7 +94,8 @@ def add_intervention():
             "latitude": inc.latitude,
             "longitude": inc.longitude,
             "image": inc.images.split(","),
-            "status": inc.status
+            "status": inc.status,
+            "comment": ""
             }
     incidents.append(incident_data)
     return jsonify({
@@ -130,12 +132,23 @@ def deleteId(search_item, list_of_Items):
                     })
 def edit_incident(search_item, list_of_Items):
     item = [item for item in list_of_Items if item['incidentId'] == search_item]
-    list_of_Items[search_item-1]['latitude'] = request.json.get('latitude', list_of_Items[0]['latitude'])
-    list_of_Items[search_item-1]['longitude'] = request.json.get('longitude', list_of_Items[0]['longitude'])
+    item[0]['latitude'] = request.json.get('latitude', item[0]['latitude'])
+    item[0]['longitude'] = request.json.get('longitude', item[0]['longitude'])
 
     return jsonify({
                     "status":200,
                     "id": search_item,
                     "data":incidents,
                     "message":"red-flag location updated successfully"
+                    })
+
+def add_comment(search_item, list_of_Items):
+    item = [item for item in list_of_Items if item['incidentId'] == search_item]
+    item[0]['comment'] = request.json.get('comment', item[0]['comment'])
+
+    return jsonify({
+                    "status":200,
+                    "id": search_item,
+                    "data":incidents,
+                    "message":"incident commment added successfully"
                     })
