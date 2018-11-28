@@ -1,15 +1,33 @@
 from flask import request, Response, json, jsonify
 from api.models.ireportermodels import User, users, Incident, incidents, RedFlag, Intervention
+from api.utilities import *
 import uuid
 import datetime
 
 def addUser():
     request_data = request.get_json()
-    
+
+    if check_for_empty_fields(request_data["firstName"], request_data["lastName"], request_data["otherNames"], 
+                                request_data["userName"], request_data["email"], request_data["password"]):
+        return jsonify({"status":200,"message": "Please fill in all the fields"})
+
+    if check_for_string_input(request_data["firstName"], request_data["lastName"], request_data["otherNames"], 
+                                request_data["userName"], request_data["email"], request_data["password"]):
+        return jsonify({"status":200,"message": "Please fields must contain string values"})
+
+    if check_for_space(request_data["firstName"], request_data["lastName"], request_data["otherNames"], 
+                                request_data["userName"], request_data["email"], request_data["password"]):
+        return jsonify({"status":200,"message": "Please fields must not be filled with a space "})
+
+    if check_white_space_char(request_data["firstName"], request_data["lastName"], request_data["otherNames"], 
+                                request_data["userName"], request_data["email"], request_data["password"]):
+        return jsonify({"status":200,"message": "Please the input should not contain white space characters"})
+
     user = User()
     user.first_name = request_data["firstName"]
-    user.Last_name = request_data["lastName"]
+    user.last_name = request_data["lastName"]
     user.other_names = request_data["otherNames"]
+    user.user_name = request_data["userName"]
     user.email = request_data["email"]
     user.password = request_data["password"]
     user.registered = datetime.datetime.today()
@@ -27,6 +45,7 @@ def addUser():
         "firstName": user.first_name,
         "lastName": user.last_name,
         "otherNames": user.other_names,
+        "userName": user.user_name,
         "email": user.email,
         "password": user.password,
         "registered": user.registered,
@@ -44,6 +63,7 @@ inc = Incident()
 
 def addIncident():
     request_data = request.get_json()
+
     
     inc.latitude = request_data["latitude"]
     inc.longitude = request_data["longitude"]
@@ -69,7 +89,7 @@ def add_red_flag():
             "incidentType": red.red_flag_incident_type,
             "latitude": inc.latitude,
             "longitude": inc.longitude,
-            "image": inc.images.split(","),
+            "images": inc.images.split(","),
             "status": inc.status,
             "comment": ""
             }
