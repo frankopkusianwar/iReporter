@@ -5,13 +5,16 @@ import datetime
 
 def addUser():
     request_data = request.get_json()
+    
     user = User()
-    user.first_name = request_data["first_name"]
-    user.Last_name = request_data["last_name"]
-    user.other_names = request_data["other_names"]
+    user.first_name = request_data["firstName"]
+    user.Last_name = request_data["lastName"]
+    user.other_names = request_data["otherNames"]
     user.email = request_data["email"]
     user.password = request_data["password"]
     user.registered = datetime.datetime.today()
+
+
     def addUserId():
         if len(users) == 0: 
             user_id = len(users)+1 
@@ -21,7 +24,7 @@ def addUser():
 
     usersData = {
         "userId": addUserId(),
-        "firstName": user.first_ame,
+        "firstName": user.first_name,
         "lastName": user.last_name,
         "otherNames": user.other_names,
         "email": user.email,

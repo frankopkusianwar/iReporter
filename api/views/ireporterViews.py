@@ -19,18 +19,18 @@ def create_intervention_record():
 def get_all_incident_records():
     return getAllIncidents()
 
-@bp.route("/red-flags/<int:red_flag_id>", methods=["GET"])
-def get_specific_redflag(red_flag_id):
-    return searchId(red_flag_id, incidents)
+@bp.route("/incidents/<int:incid_id>", methods=["GET"])
+def get_specific_redflag(incid_id):
+    return searchId(incid_id, incidents)
 
-@bp.route("/red-flags/<int:red_flag_id>/location", methods=["PATCH"])
-def edit_specific_redflag_location(red_flag_id):
-    return edit_incident(red_flag_id,incidents)
+@bp.route("/incidents/<int:incid_id>/location", methods=["PATCH"])
+def edit_specific_redflag_location(incid_id):
+    return edit_incident(incid_id,incidents)
 
-@bp.route("/red-flags/<int:red_flag_id>/comment", methods=["PATCH"])
+@bp.route("/incidents/<int:incid_id>/comment", methods=["PATCH"])
 def add_comment_to_specific_redflag_record():
     pass
 
-@bp.route("/red-flags/<int:red_flag_id>", methods=["DELETE"])
-def delete_specific_redflag_record(red_flag_id):
-    return deleteId(red_flag_id, incidents)
+@bp.route("/incidents/<int:incid_id>", methods=["DELETE"])
+def delete_specific_redflag_record(incid_id):
+    return deleteId(incid_id, incidents)
