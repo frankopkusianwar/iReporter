@@ -1,6 +1,8 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/6e8511dbcf29b1cee00a/maintainability)](https://codeclimate.com/github/frankopkusianwar/iReporter/maintainability)
+
 [![Build Status](https://travis-ci.org/frankopkusianwar/iReporter.svg?branch=develop)](https://travis-ci.org/frankopkusianwar/iReporter)
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/6e8511dbcf29b1cee00a/maintainability)](https://codeclimate.com/github/frankopkusianwar/iReporter/maintainability)
+[![Coverage Status](https://coveralls.io/repos/github/frankopkusianwar/iReporter/badge.svg)](https://coveralls.io/github/frankopkusianwar/iReporter)
 
 # iReporter 
 iReporter enables any/every citizen to bring any form of corruption to the notice of appropriate authorities and the general public. Users can also report on things that needs government intervention
