@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/frankopkusianwar/iReporter.svg?branch=develop)](https://travis-ci.org/frankopkusianwar/iReporter)
 
-[![Coverage Status](https://coveralls.io/repos/github/frankopkusianwar/iReporter/badge.svg)](https://coveralls.io/github/frankopkusianwar/iReporter)
+[![Coverage Status](https://coveralls.io/repos/github/frankopkusianwar/iReporter/badge.svg?branch=develop)](https://coveralls.io/github/frankopkusianwar/iReporter?branch=develop)
 
 # iReporter 
 iReporter enables any/every citizen to bring any form of corruption to the notice of appropriate authorities and the general public. Users can also report on things that needs government intervention
