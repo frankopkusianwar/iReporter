@@ -11,8 +11,8 @@ class TestEndpts(unittest.TestCase):
     def test_create_user(self):
         userData = {
 
-        "firstName": "frank",
-        "lastName": "okiror",
+        "firstName": "okiror",
+        "lastName": "frank",
         "otherNames": "off",
         "userName": "franko",
         "email": "okirorfrank3@gmailcom",
