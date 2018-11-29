@@ -8,9 +8,10 @@ install:
   - pip install python-coveralls
   - pip install coverage
 # command to run tests
-script:
-  - python -m unittest -v --with-coverage
+virtualenv:
+script: 
+  - nosetests --with-coverage
 after_success:
-  - coveralls
+- coveralls
   
 
