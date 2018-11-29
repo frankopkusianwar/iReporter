@@ -13,7 +13,7 @@ def addUser():
 
     if check_for_string_input(request_data["firstName"], request_data["lastName"], request_data["otherNames"], 
                                 request_data["userName"], request_data["email"], request_data["password"]):
-        return jsonify({"status":200,"message": "Please fields must contain string values"})
+        return jsonify({"status":200,"message": "Please fields must contain only string values"})
 
     if check_for_space(request_data["firstName"], request_data["lastName"], request_data["otherNames"], 
                                 request_data["userName"], request_data["email"], request_data["password"]):
