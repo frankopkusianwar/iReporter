@@ -15,14 +15,16 @@ class User:
 users = []
 
 class Incident:
-    def __init__(self, created_by="",
-                latitude="", longitude="", images=[], 
-                comment=""):
-
+    def __init__(self, incident_id=int, created_by="", created_on="",
+                latitude="", longitude="", images=[], status="", comment=""):
+        self.incident_id = incident_id
+        self.created_by = created_by
+        self.created_on = created_on
         self.latitude = latitude
         self.longitude = longitude
-        self.status = "draft"
         self.images = images
+        self.status = status
+        self.comment = comment
 
 class  RedFlag(Incident):
     """docstring for  RedFlag"""
