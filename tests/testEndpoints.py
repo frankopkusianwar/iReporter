@@ -16,7 +16,7 @@ class TestEndpts(unittest.TestCase):
         "otherNames": "off",
         "userName": "franko",
         "email": "okirorfrank3@gmailcom",
-        "password": "1234",
+        "password": "we234",
         }
         response = self.test_client.post(
             'api/v1/users',
