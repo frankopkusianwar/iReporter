@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/frankopkusianwar/iReporter.svg?branch=develop)](https://travis-ci.org/frankopkusianwar/iReporter)
+
 [![Maintainability](https://api.codeclimate.com/v1/badges/6e8511dbcf29b1cee00a/maintainability)](https://codeclimate.com/github/frankopkusianwar/iReporter/maintainability)
 
 # iReporter 
