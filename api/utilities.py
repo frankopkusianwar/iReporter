@@ -13,8 +13,3 @@ def check_for_string_input(*fields):
     for field in fields:
         if type(field) != str:
             return True
-def check_white_space_char(*fields):
-    """This function checks for white spaces in the input fields"""
-    for field in fields:
-        if field.strip( ):
-            return True
