@@ -13,7 +13,7 @@ class TestEndpts(unittest.TestCase):
 
         "firstName": "okiror",
         "lastName": "frank",
-        "otherNames": "off",
+        "otherNames": "offff",
         "userName": "franco",
         "email": "okirorfrank3@gmailcom",
         "password": "we234",
