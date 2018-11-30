@@ -11,12 +11,12 @@ class TestEndpts(unittest.TestCase):
     def test_create_user(self):
         userData = {
 
-        "firstName": "frank",
-        "lastName": "okiror",
-        "otherNames": "of",
-        "userName": "franko",
+        "firstName": "okiror",
+        "lastName": "frank",
+        "otherNames": "offff",
+        "userName": "franco",
         "email": "okirorfrank3@gmailcom",
-        "password": "1234",
+        "password": "we234",
         }
         response = self.test_client.post(
             'api/v1/users',

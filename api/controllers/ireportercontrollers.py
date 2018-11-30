@@ -5,10 +5,10 @@ import datetime
 
 
 class UserController:
-
+  
     def addUser(self):
         request_data = request.get_json()
-
+      
         validate_fields = [request_data["firstName"], request_data["lastName"], request_data["otherNames"], 
                                 request_data["userName"], request_data["email"], request_data["password"]]
         for field in validate_fields:
