@@ -1,207 +1,226 @@
 from flask import request, Response, json, jsonify
-from api.models.ireportermodels import User, users, Incident, incidents, RedFlag, Intervention
-from api.utilities import *
+from api.models.ireportermodels import User, users, Incident, incidents, Intervention, RedFlag
 import uuid
 import datetime
 
-def addUser():
-    request_data = request.get_json()
 
-    if check_for_empty_fields(request_data["firstName"], request_data["lastName"], request_data["otherNames"], 
-                                request_data["userName"], request_data["email"], request_data["password"]):
-        return jsonify({"status":200,"message": "Please fill in all the fields"})
+class UserController:
+  
+    def addUser(self):
+        request_data = request.get_json()
+      
+        validate_fields = [request_data["firstName"], request_data["lastName"], request_data["otherNames"], 
+                                request_data["userName"], request_data["email"], request_data["password"]]
+        for field in validate_fields:
+            if not field:
+                return jsonify({"status":200,"message": "Please fill in all the fields"})
 
-    if check_for_string_input(request_data["firstName"], request_data["lastName"], request_data["otherNames"], 
-                                request_data["userName"], request_data["email"], request_data["password"]):
-        return jsonify({"status":200,"message": "Please fields must contain only string values"})
+            if type(field) != str:
+                return jsonify({"status":200,"message": "Please fields must contain string values"})
+            
+            if field.isspace():
+                return jsonify({"status":200,"message": "Please fields must not be filled with a space "})
 
-    if check_for_space(request_data["firstName"], request_data["lastName"], request_data["otherNames"], 
-                                request_data["userName"], request_data["email"], request_data["password"]):
-        return jsonify({"status":200,"message": "Please fields must not be filled with a space "})
-
-    user = User()
-    user.first_name = request_data["firstName"]
-    user.last_name = request_data["lastName"]
-    user.other_names = request_data["otherNames"]
-    user.user_name = request_data["userName"]
-    user.email = request_data["email"]
-    user.password = request_data["password"]
-    user.registered = datetime.datetime.today()
-
-
-    def addUserId():
+        User.first_name = request_data["firstName"]
+        User.last_name = request_data["lastName"]
+        User.other_names = request_data["otherNames"]
+        User.user_name = request_data["userName"]
+        User.email = request_data["email"]
+        User.password = request_data["password"]
+        User.registered = datetime.datetime.today()
         if len(users) == 0: 
-            user_id = len(users)+1 
+            User.user_id = len(users)+1 
         else: 
-            user_id = users[-1]["userId"]+1
-        return user_id
-
-    usersData = {
-        "userId": addUserId(),
-        "firstName": user.first_name,
-        "lastName": user.last_name,
-        "otherNames": user.other_names,
-        "userName": user.user_name,
-        "email": user.email,
-        "password": user.password,
-        "registered": user.registered,
-        "public_userId": str(uuid.uuid4())
-        }
-    users.append(usersData)
-    return jsonify({
-                    "data":users,
-                    "status":201,
-                    "id":usersData['userId'],
-                    "message":"user created successully"
-                    })
-
-inc = Incident()
-
-def addIncident():
-    request_data = request.get_json()
+            User.user_id = users[-1]["userId"]+1
     
-    inc.created_by = request.headers["userId"]
-    inc.created_on = datetime.datetime.today()
-    inc.latitude = request_data["latitude"]
-    inc.longitude = request_data["longitude"]
-    inc.images = request_data["images"].split(",")
-    inc.status = "draft"
+        usersData = {
+                "userId": User.user_id,
+                "firstName": User.first_name,
+                "lastName": User.last_name,
+                "otherNames": User.other_names,
+                "userName": User.user_name,
+                "email": User.email,
+                "password": User.password,
+                "registered": User.registered,
+                "public_userId": str(uuid.uuid4())
+                }
+        users.append(usersData)
+        return jsonify({
+                        "data":users,
+                        "status":201,
+                        "id":usersData['userId'],
+                        "message":"user created successully"
+                        })
 
-def add_incident_id():
-    if len(incidents) == 0: 
-        incident_id = len(incidents)+1 
-    else: 
-        incident_id = incidents[-1]["incidentId"]+1
-    return incident_id
-        
+class IncidentController:
 
-def add_red_flag():
-    red = RedFlag()
-    addIncident()
+    def add_red_flag(self):
+        data = request.get_json()
 
-    incident_data = {
-            "incidentId": add_incident_id(),
-            "createdOn": inc.created_on,
-            "createdBy": inc.created_by,
-            "incidentType": red.red_flag_incident_type,
-            "latitude": inc.latitude,
-            "longitude": inc.longitude,
-            "images": inc.images,
-            "status": inc.status,
-            "comment": ""
+        redflgs = [data["latitude"], data["longitude"], data["images"]]
+        for rflg in redflgs:
+            if not rflg :
+                return jsonify({"status":200,"message": "Please fill in all the fields"})
+
+            if type(rflg ) != str:
+                return jsonify({"status":200,"message": "Please fields must contain string values"})
+            
+            if rflg.isspace():
+                return jsonify({"status":200,"message": "Please fields must not be filled with a space "})
+
+        RedFlag.created_by = request.headers["userId"]
+        RedFlag.created_on = datetime.datetime.today()
+        RedFlag.latitude = data['latitude']
+        RedFlag.longitude = data['longitude']
+        RedFlag.images = data['images']
+        RedFlag.red_flag_incident_type = "red-flag"
+        RedFlag.status = "draft"
+        RedFlag.comment = ""
+        if len(incidents) == 0: 
+            RedFlag.incident_id = len(incidents)+1 
+        else: 
+            RedFlag.incident_id = incidents[-1]["incidentId"]+1
+
+        incident_data = {
+            "incidentId": RedFlag.incident_id,
+            "createdOn": RedFlag.created_on,
+            "createdBy": RedFlag.created_by,
+            "latitude": RedFlag.latitude,
+            "longitude": RedFlag.longitude,
+            "images": RedFlag.images.split(","),
+            "status": RedFlag.status,
+            "incidentType": RedFlag.red_flag_incident_type,
+            "comment": RedFlag.comment
             }
-    incidents.append(incident_data)
-    return jsonify({
-            "data":incidents,
-            "status":201,
-            "id":incident_data['incidentId'],
-            "message":"Incidents created successully"
-            })
+        incidents.append(incident_data)
+        return jsonify({
+                "data":incidents,
+                "status":201,
+                "id":incident_data['incidentId'],
+                "message":"Incident created successully"
+                })
 
-def add_intervention():
-    intv = Intervention()
-    addIncident()
+    def add_intervention(self):
+        data = request.get_json()
 
-    incident_data = {
-            "incidentId": add_incident_id(),
-            "createdOn": inc.created_on,
-            "createdBy": inc.created_by,
-            "incidentType": intv.internention_incident_type,
-            "latitude": inc.latitude,
-            "longitude": inc.longitude,
-            "image": inc.images,
-            "status": inc.status,
-            "comment": ""
+        intv = [data["latitude"], data["longitude"], data["images"]]
+        for intv in intv:
+            if not intv :
+                return jsonify({"status":200,"message": "Please fill in all the fields"})
+
+            if type(intv) != str:
+                return jsonify({"status":200,"message": "Please fields must contain string values"})
+            
+            if intv.isspace():
+                return jsonify({"status":200,"message": "Please fields must not be filled with a space "})
+
+        Intervention.created_by = request.headers["userId"]
+        Intervention.created_on = datetime.datetime.today()
+        Intervention.latitude = data['latitude']
+        Intervention.longitude = data['longitude']
+        Intervention.images = data['images']
+        Intervention.internention_incident_type = "intervention"
+        Intervention.status = "draft"
+        Intervention.comment = ""
+        if len(incidents) == 0: 
+            Intervention.incident_id = len(incidents)+1 
+        else: 
+            Intervention.incident_id = incidents[-1]["incidentId"]+1
+
+        incident_data = {
+            "incidentId": Intervention.incident_id,
+            "createdOn": Intervention.created_on,
+            "createdBy": Intervention.created_by,
+            "latitude": Intervention.latitude,
+            "longitude": Intervention.longitude,
+            "images": Intervention.images.split(","),
+            "status": Intervention.status,
+            "incidentType": Intervention.internention_incident_type,
+            "comment": Intervention.comment
             }
-    incidents.append(incident_data)
-    return jsonify({
-            "data":incidents,
-            "status":201,
-            "id":incident_data['incidentId'],
-            "message":"Incident created successully"
-            })
-
-
-def getAllIncidents():
-    if len(incidents) == 0:
-        return jsonify({"status": 200, "message":"No incident records found"})
-    return jsonify({
+        incidents.append(incident_data)
+        return jsonify({
+                "data":incidents,
+                "status":201,
+                "id":incident_data['incidentId'],
+                "message":"Incident created successully"
+                })
+    def get_all_incidents(self):
+        if len(incidents) == 0:
+            return jsonify({"status": 200, "message":"No incident records found"})
+        return jsonify({
                     "status":201,
                     "data":incidents
                     })
 
-def searchId(search_item, list_of_Items):
-    search_list = []
-    for item in list_of_Items:
-        for key in item:
-            if item[key] == search_item:
-                search_list.append(item)
-    if len(search_list) == 0:
-        return jsonify({"message":"incident id does not exist"})            
-    return jsonify({
-                    "status":201,
-                    "data":search_list
+    def get_specific_record(self,item_id, list_of_Items):
+        item = [item for item in list_of_Items if item['incidentId'] == item_id]
+        if len(item) == 0:
+            return jsonify({"status":200,"message":"The incident id your trying to get does not exist"})
+        return jsonify({
+                    "status":200,
+                    "id": item_id,
+                    "data":item,
+                    "message":"incident record returned successfully"
                     })
 
-def deleteId(search_item, list_of_Items):
-    item = [item for item in list_of_Items if item['incidentId'] == search_item]
-    if len(item) == 0:
-        return jsonify({"status":200,"message":"The record id your trying to delete does not exist"})
-    list_of_Items.remove(item[0])
-    return jsonify({
+    def edit_incident(self,search_item, list_of_Items):
+        item = [item for item in list_of_Items if item['incidentId'] == search_item]
+        if len(item) == 0:
+            return jsonify({"status":200,"message":"The record id your trying to update does not exist"})
+        
+        edit_data = request.get_json()
+        latlong = [edit_data["latitude"], edit_data["longitude"]]
+        for edit in latlong:
+            if not edit :
+                return jsonify({"status":200,"message": "Please fill in all the fields"})
+
+            if type(edit) != str:
+                 return jsonify({"status":200,"message": "Please fields must contain string values"})
+                
+            if edit.isspace():
+                return jsonify({"status":200,"message": "Please fields must not be filled with a space "})
+        item[0]['latitude'] = request.json.get('latitude', item[0]['latitude'])
+        item[0]['longitude'] = request.json.get('longitude', item[0]['longitude'])
+
+        return jsonify({
+                        "status":200,
+                        "id": search_item,
+                        "data":incidents,
+                        "message":"incident location updated successfully"})
+
+    def edit_comment(self,comments_id, list_of_Items):
+        item = [item for item in list_of_Items if item['incidentId'] == comments_id]
+        if len(item) == 0:
+            return jsonify({"status":200,"message":"The record id your trying to comment on does not exist"})
+        
+        comment_data = request.get_json()
+        com = comment_data["comment"]
+
+        if not com :
+            return jsonify({"status":200,"message": "Please fill in the comment"})
+
+        if type(com) != str:
+            return jsonify({"status":200,"message": "Please comment must be a string value"})
+                
+        if com.isspace():
+            return jsonify({"status":200,"message": "Please fields must not be filled with a space "})
+        item[0]['comment'] = request.json.get('comment', item[0]['comment'])
+
+        return jsonify({
+                        "status":200,
+                        "id": comments_id,
+                        "data":incidents,
+                        "message":"comment added successfully"})
+
+    def deleteId(self,search_item, list_of_Items):
+        item = [item for item in list_of_Items if item['incidentId'] == search_item]
+        if len(item) == 0:
+            return jsonify({"status":200,"message":"The record id your trying to delete does not exist"})
+        list_of_Items.remove(item[0])
+        return jsonify({
                     "status":200,
                     "id": search_item,
                     "data":incidents,
-                    "message":"red-flag record deleted successfully"
-                    })
-def edit_incident(search_item, list_of_Items):
-    item = [item for item in list_of_Items if item['incidentId'] == search_item]
-    if len(item) == 0:
-        return jsonify({"status":200,"message":"The record id your trying to update does not exist"})
-    
-    
-    request_data = request.get_json()
-    if check_for_empty_fields(request_data["latitude"],request_data["longitude"]):
-        return jsonify({"status":200,"message": "Please fill in all fields field"})
-
-    if check_for_string_input(request_data["latitude"],request_data["longitude"]):
-        return jsonify({"status":200,"message": "Please latitude and longitude should be a string"})
-
-    if check_for_space(request_data["latitude"],request_data["longitude"]):
-        return jsonify({"status":200,"message": "Please enter latitude and logitude co-ordinates not spaces"})
-
-
-    item[0]['latitude'] = request.json.get('latitude', item[0]['latitude'])
-    item[0]['longitude'] = request.json.get('longitude', item[0]['longitude'])
-
-    return jsonify({
-                    "status":200,
-                    "id": search_item,
-                    "data":incidents,
-                    "message":"red-flag location updated successfully"
-                    })
-
-def add_comment(search_item, list_of_Items):
-    item = [item for item in list_of_Items if item['incidentId'] == search_item]
-
-    if len(item) == 0:
-        return jsonify({"status":200,"message":"The record id your trying to comment on does not exist"})
-
-    request_data = request.get_json()
-    if check_for_empty_fields(request_data["comment"]):
-        return jsonify({"status":200,"message": "Please fill in the comment field"})
-
-    if check_for_string_input(request_data["comment"]):
-        return jsonify({"status":200,"message": "Please comment shouled be a string"})
-
-    if check_for_space(request_data["comment"]):
-        return jsonify({"status":200,"message": "Please space input is not allowed in comments"})
-    
-    item[0]['comment'] = request.json.get('comment', item[0]['comment'])
-
-    return jsonify({
-                    "status":200,
-                    "id": search_item,
-                    "data":incidents,
-                    "message":"incident commment added successfully"
+                    "message":"incident record deleted successfully"
                     })
