@@ -1,42 +1,41 @@
 class User:
-
-    def __init__(self, user_id=int, first_name="", last_name="", 
-                other_names="", user_name="", email="", password="", 
-                registered="", isAdmin="False"):
-
-        self.user_id = user_id
-        self.first_name = first_name
-        self.last_name = last_name
-        self.other_names = other_names
-        self.user_name = user_name
-        self.email = email
-        self.password = password
+    """model class for user"""
+    def __init__(self,args):
+        self.user_id = args['userId']
+        self.first_name = args['firstName']
+        self.last_name = args['lastName']
+        self.other_names = args['otherNames']
+        self.user_name = args['userName']
+        self.email = args['email']
+        self.password = args['password']
+        self.registered = args['registered']
+        self.isAdmin = False
 
 users = []
 
 class Incident:
-    def __init__(self, incident_id=int, created_by="", created_on="",
-                latitude="", longitude="", images=[], status="", comment=""):
-        self.incident_id = incident_id
-        self.created_by = created_by
-        self.created_on = created_on
-        self.latitude = latitude
-        self.longitude = longitude
-        self.images = images
-        self.status = status
-        self.comment = comment
+    """model class for incident"""
+    def __init__(self, args):
+        self.incident_id = args['incident_id']
+        self.created_by = args['created_by']
+        self.created_on = args['created_on']
+        self.latitude = args['latitude']
+        self.longitude = args['longitude']
+        self.images = args['images']
+        self.status = args['status']
+        self.comment = args['comment']
 
 class  RedFlag(Incident):
-    """docstring for  RedFlag"""
-    def __init__(self):
-        Incident.__init__(self)
-        self.red_flag_incident_type = "red-flag"
+    """model class for  RedFlags"""
+    def __init__(self, red_flag_incident_type):
+        super.__init__(self,)
+        self.red_flag_incident_type = red_flag_incident_type
 
 class  Intervention(Incident):
-    """docstring for  RedFlag"""
-    def __init__(self):
-        Incident.__init__(self)
-        self.internention_incident_type = "intervention"
+    """model class for interventions"""
+    def __init__(self, internention_incident_type):
+        super.__init__(self)
+        self.internention_incident_type = internention_incident_type
         
 
 incidents = []    
