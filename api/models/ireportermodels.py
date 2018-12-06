@@ -81,5 +81,12 @@ class IreporterDb:
              if incident.incident_id == return_id:
                 return incident.incident_json() 
         return None
+    
+    def delete_incident(self, delete_id):
+        for del_incident in self.incident_list:
+             if del_incident.incident_id == delete_id:
+                 self.incident_list.remove(del_incident)
+                 return "deleted"    
+        return None
 
         

@@ -1,6 +1,6 @@
 from flask import request, Response, json, jsonify
 from api.models.ireportermodels import BaseIncident, Incident, IreporterDb
-from api.utilities import make_id
+from api.utilities import make_id, check_empty
 import uuid
 import datetime
 
@@ -18,6 +18,8 @@ class IncidentController:
         images = inc_data.get('images')
         videos = inc_data.get('videos')
         comment = ""
+
+        
 
         incident = Incident(BaseIncident(images, videos, created_on, created_by,comment),
         incident_id, incident_type, location, status)
@@ -43,4 +45,14 @@ class IncidentController:
         return jsonify({
             "status": 200,
             "data": new_inc.get_specific_incident(particular_id)
+        })
+
+    def del_spec_inc(self, del_id):
+        if new_inc.delete_incident(del_id) == None:
+            return jsonify({"status":200,"message":"the red-flag you're trying to delete does not exist"})
+        return jsonify({
+            "id": del_id,
+            "status": 200,
+            "data": new_inc.get_incidents(),
+            "message": "red-flag deleted successfully"
         })

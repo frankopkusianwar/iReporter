@@ -32,8 +32,8 @@ def edit_specific_incident_location(incid_id):
 
 @bp.route("/incidents/<int:incid_id>/comment", methods=["PATCH"])
 def add_comment_to_specific_incident_record(incid_id):
-    return incidnt.edit_comment(incid_id,incidents)
+    return incidnt.edit_comment(incid_id,incidents)'''
 
-@bp.route("/incidents/<int:incid_id>", methods=["DELETE"])
+@bp.route("/red-flags/<int:incid_id>", methods=["DELETE"])
 def delete_specific_incident_record(incid_id):
-    return incidnt.deleteId(incid_id, incidents)'''
+    return incdnt.del_spec_inc(incid_id)
