@@ -34,19 +34,22 @@ class TestEndpts(unittest.TestCase):
         users.append(userData)
         assert(len(users) > userlen)
     
-    def test_create_incident(self):
-        incident_data = {
-            "createdBy": 3,
-            "createdOn": "25-nov-2018",
-            "incidentType": "red-flag",
+    def test_add_red_flag(self):
+        red_flag_data = {
+            "incidentId": 2,
+            "createdOn": "24-nov-2018",
+            "createdBy": 1,
             "latitude": "23.00",
-            "longitude": "30.33",
-            "images": "coruiptionimages/coruption.jpg",
+            "longitude": "43.00",
+            "images": "images,images",
             "status": "draft",
-            }
+            "incidentType": "red-flag",
+            "comment": ""
+        }
+
         response = self.test_client.post(
             'api/v1/red-flags',
             content_type='application/json',
-            data=json.dumps(incident_data)
+            data=json.dumps(red_flag_data)
         )
         #message = json.loads(response.data.decode())
