@@ -19,7 +19,7 @@ class IncidentController:
         videos = inc_data.get('videos')
         comment = ""
         val_fields = [location, images, videos]
-        if check_inc(val_fields,location,images,videos) == None:
+        if check_inc(val_fields,location,images,videos) == "invalid":
             return jsonify({"status": 400, "message":"please fill all fields"}),400
         if incident_type == "red-flag" or incident_type == "intervention":
             incident = Incident(BaseIncident(images, videos, created_on, created_by,comment),
