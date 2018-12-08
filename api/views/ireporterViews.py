@@ -25,15 +25,18 @@ def getSpecificIncidents(red_flag_id):
     incdnt = IncidentController()
     return incdnt.get_spec_inc(red_flag_id)
 
-'''
-@bp.route("/incidents/<int:incid_id>/location", methods=["PATCH"])
+@bp.route("/red-flags/<int:incid_id>/location", methods=["PATCH"])
 def edit_specific_incident_location(incid_id):
-    return incidnt.edit_incident(incid_id,incidents)
+    return incdnt.update_loc(incid_id)
 
-@bp.route("/incidents/<int:incid_id>/comment", methods=["PATCH"])
-def add_comment_to_specific_incident_record(incid_id):
-    return incidnt.edit_comment(incid_id,incidents)'''
+@bp.route("/red-flags/<int:incid_id>/comment", methods=["PATCH"])
+def add_comment_to_specific_red_flag_record(incid_id):
+    return incdnt.create_comment(incid_id)
 
 @bp.route("/red-flags/<int:incid_id>", methods=["DELETE"])
 def delete_specific_incident_record(incid_id):
     return incdnt.del_spec_inc(incid_id)
+
+@bp.route("/red-flags/<int:incid_id>/status", methods=["PATCH"])
+def change_red_flag_status(incid_id):
+    return incdnt.chng_status(incid_id)

@@ -8,9 +8,10 @@ def make_id(chk, list_of_Items):
             new_id = obj.incident_id + 1
     return new_id
 
-def check_empty(*fields):
+def check_inc(fields,loc,img,vid):
     for field in fields:
         if not field:
-            return jsonify({
-                "message": "please fill in all fields"
-            })
+            return None
+        if type(loc) != dict or type(img) != list or type(vid) != list:
+                return None
+    return "valid"

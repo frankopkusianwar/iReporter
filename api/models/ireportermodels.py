@@ -74,6 +74,8 @@ class IreporterDb:
         self.incident_list.append(incident_item)
 
     def get_incidents(self):
+        if len(self.incident_list) == 0:
+            return None 
         return [incidents.incident_json() for incidents in self.incident_list]
     
     def get_specific_incident(self, return_id):
@@ -84,9 +86,30 @@ class IreporterDb:
     
     def delete_incident(self, delete_id):
         for del_incident in self.incident_list:
-             if del_incident.incident_id == delete_id:
+             if del_incident.incident_id == delete_id and del_incident.status == "draft":
                  self.incident_list.remove(del_incident)
                  return "deleted"    
+        return None
+
+    def add_comment(self, comment_id, comm):
+        for com in self.incident_list:
+             if com.incident_id == comment_id:
+                 com.base.comment = comm
+                 return "comment added"  
+        return None
+    
+    def edit_red_flag(self, location_id, locatn):
+        for loc in self.incident_list:
+             if loc.incident_id == location_id and loc.status == "draft":
+                 loc.location = locatn
+                 return "location updated"  
+        return None
+
+    def update_status(self, status_id, stat):
+        for st in self.incident_list:
+             if st.incident_id == status_id:
+                 st.status = stat
+                 return "status updated"  
         return None
 
         
