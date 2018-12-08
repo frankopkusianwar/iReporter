@@ -6,9 +6,6 @@ import datetime
 
 new_user = IreporterDb()
 
-
-
-
 class UserController:
     def create_user(self):
         user_data = request.get_json()

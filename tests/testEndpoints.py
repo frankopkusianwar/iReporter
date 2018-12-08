@@ -12,6 +12,7 @@ class TestEndpts(unittest.TestCase):
         user = User(BaseUser("of", "franko", "123456789", "25-nov-2018"),
         "2", "frank", "okiror", "okirorfrank3@gmail.com", False)
         user_data = user.make_json()
+
         response = self.test_client.post(
             'api/v1/users',
             content_type='application/json',
