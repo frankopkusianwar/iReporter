@@ -10,7 +10,7 @@ iReporter enables any/every citizen to bring any form of corruption to the notic
 # User Interface
 The user  interface contains pages that allow the user to interact with the system
 ## Getting started
-clone the project to your computer and improve it
+clone the project to your computer and improve on it
 - https://github.com/frankopkusianwar/iReporter.git
 ## Project link
 https://github.com/frankopkusianwar/iReporter/tree/develop
