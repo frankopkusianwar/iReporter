@@ -32,7 +32,7 @@ class IncidentController:
         return jsonify({
             "id": incident_id,
             "status": 201,
-            "message": "incident created successfully", 
+            "message": "red-flag created successfully", 
             "data": incident.incident_json()
         }), 201
 
