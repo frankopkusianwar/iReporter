@@ -21,19 +21,21 @@ class IncidentController:
         val_fields = [location, images, videos]
         if check_inc(val_fields,location,images,videos) == "invalid":
             return jsonify({"status": 400, "message":"please fill all fields"}),400
-        if incident_type == "red-flag" or incident_type == "intervention":
-            incident = Incident(BaseIncident(images, videos, created_on, created_by,comment),
-            incident_id, incident_type, location, status)
-        
-            new_inc.add_incident(incident)
+        if incident_type != "red-flag" and incident_type != "intervention":
+            return jsonify({"status":400,"message":"please enter incidentType as red-flag or intervention"}),400
 
-            return jsonify({
-                "id": incident_id,
-                "status": 201,
-                "message": "incident created successfully", 
-                "data": incident.incident_json()
-            }), 201
-        return jsonify({"status":200,"message":"please enter incidentType as red-flag or intervention"}),400
+        incident = Incident(BaseIncident(images, videos, created_on, created_by,comment),
+        incident_id, incident_type, location, status)
+        
+        new_inc.add_incident(incident)
+
+        return jsonify({
+            "id": incident_id,
+            "status": 201,
+            "message": "red-flag created successfully", 
+            "data": incident.incident_json()
+        }), 201
+
     def get_inc(self):
         if new_inc.get_incidents() == None:
             return jsonify({"status":200,"message":"red-flag records not found"})

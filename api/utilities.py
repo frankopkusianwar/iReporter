@@ -15,7 +15,7 @@ def check_inc(fields,loc,img,vid):
         if type(loc) != dict or type(img) != list or type(vid) != list:
                 return "invalid"
     return "valid"
-
+    
 def check_user(fields):
     for field in fields:
         if not field or type(field) != str or field.isspace():

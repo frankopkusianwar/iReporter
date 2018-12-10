@@ -52,7 +52,7 @@ class Incident:
             "id": self.incident_id,
             "createdOn": self.base.created_on,
             "createdBy": self.base.created_by,
-            "type": self.incident_type,
+            "incidentType": self.incident_type,
             "location": self.location,
             "status": self.status,
             "images": self.base.images,

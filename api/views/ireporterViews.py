@@ -12,17 +12,14 @@ def createUser():
 
 @bp.route("/red-flags", methods=["POST"])
 def createIcident():
-    incdnt = IncidentController()
     return incdnt.create_incident()
 
 @bp.route("/red-flags", methods=["GET"])
 def getIncidents():
-    incdnt = IncidentController()
     return incdnt.get_inc()
 
 @bp.route("/red-flags/<int:red_flag_id>", methods=["GET"])
 def getSpecificIncidents(red_flag_id):
-    incdnt = IncidentController()
     return incdnt.get_spec_inc(red_flag_id)
 
 @bp.route("/red-flags/<int:incid_id>/location", methods=["PATCH"])
