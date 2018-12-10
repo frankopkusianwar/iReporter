@@ -87,7 +87,7 @@ class TestEndpoints(unittest.TestCase):
                          'red-flag created successfully')
 
     def test_check_invalid_incident_type(self):
-        incident = Incident(BaseIncident(['images','image'], ['videos','videos'], "25-nov-2018", 2, "comment"),
+        incident = Incident(BaseIncident(['images','images'], ['videos','videos'], "25-nov-2018", 2, "comment"),
             1, "invalid-type", {"latitude":"120.00","longitude":"120.00"}, "draft")
         incident_data = incident.incident_json()
 
