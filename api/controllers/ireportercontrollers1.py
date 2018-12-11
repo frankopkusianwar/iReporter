@@ -46,7 +46,7 @@ class IncidentController:
 
     def get_spec_inc(self, particular_id):
         if new_inc.get_specific_incident(particular_id) == None:
-            return jsonify({"status":200,"message":"requested red-flag-id not found"})
+            return jsonify({"status":200,"message":"requested red-flag-id not found"}),203
         return jsonify({
             "status": 200,
             "data": new_inc.get_specific_incident(particular_id)
