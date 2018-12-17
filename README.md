@@ -30,6 +30,14 @@ https://github.com/frankopkusianwar/iReporter/tree/develop
 - An editor of your choice
 - Web browser with suport for html5
 - Internet connection
+
+# API
+## Requirements
+- python 3.7 -programming language that can be used on any mordern operating system
+- Virtual environment -allows you to have an issolated evnvironment for your project where you can install all your dependencies
+- Flask -a python framework for that can be used to add functionality to your API endpoints
+
+
 ## Authors
 - Okiror Frank
 ## licencing
