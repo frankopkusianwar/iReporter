@@ -36,7 +36,12 @@ https://github.com/frankopkusianwar/iReporter/tree/develop
 - python 3.7 -programming language that can be used on any mordern operating system
 - Virtual environment -allows you to have an issolated evnvironment for your project where you can install all your dependencies
 - Flask -a python framework for that can be used to add functionality to your API endpoints
-
+## Heroku Link
+- https://ireporterapp.herokuapp.com/api/v1/red-flags
+## Installation
+Clone the repository
+$ https://github.com/frankopkusianwar/iReporter.git
+$ cd iReporter
 
 ## Authors
 - Okiror Frank
