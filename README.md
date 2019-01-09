@@ -9,7 +9,7 @@ The user  interface contains pages that allow the user to interact with the syst
 clone the project to your computer and improve on it
 - https://github.com/frankopkusianwar/iReporter.git
 ## Project link
-https://github.com/frankopkusianwar/iReporter/tree/develop
+- https://github.com/frankopkusianwar/iReporter/tree/develop
 ## Required features
 - Users can create an account and log in.
 - Users can create a red-flag record (An incident linked to corruption).
