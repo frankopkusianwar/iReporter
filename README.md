@@ -40,8 +40,36 @@ https://github.com/frankopkusianwar/iReporter/tree/develop
 - https://ireporterapp.herokuapp.com/api/v1/red-flags
 ## Installation
 Clone the repository
+```
 $ https://github.com/frankopkusianwar/iReporter.git
 $ cd iReporter
+```
+Install virtualenv and create a virtual envirinment
+```
+$ pip install virtualenv
+$ pip install virtualenvwrapper
+$ virtualenv venv
+$ source/venv/bin/activate
+```
+Install all the necessary dependencies
+```
+pip install -r requirements.txt
+```
+
+## Run the application
+At the terminal or console type
+```
+python run.py
+```
+To run tests run this command at the console/terminal and add the test file name
+```
+pytest filename
+```
+## Versioning
+```
+This API is versioned using url versioning starting, with the letter 'v'
+This is version one"v1" of the API
+```
 
 ## Authors
 - Okiror Frank
