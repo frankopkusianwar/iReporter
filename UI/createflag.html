@@ -11,10 +11,9 @@
                 <div class="header-content" id="header-nav">
                     <a href="index.html">Logout</a>
                     <a href="profile.html">Profile</a>
-                    <a href="viewIntervention.html">View Intervention</a>
+                    <a href="viewIntervention.html">ViewIntervention</a>
                     <a href="viewFlag.html">ViewRedFlag</a>
-                    <a href="intervention.html">Create Intervention</a>
-                    <a href="createflag.html">Create Red flag</a>
+                    <a href="createflag.html">Create Record</a>
                     <a href="javascript:void(0);" class="icon" onclick="togle()">
                         <i class="fa fa-bars"></i>
                     </a>
@@ -24,12 +23,13 @@
             <div class="pages-content">
                 <form>
                     <div class="redflag-content">
-                        <input type="text" placeholder="Red Flag Title"><br><br>
-                        <textarea rows="8" placeholder="Red FlagDescription"></textarea><br><br>
+                        <input type="text" placeholder="Title"><br><br>
+                        <select class="select"><option>--Type--</option><option>Red-flag</option><option>intervention</option></select><br><br>
+                        <textarea rows="8" placeholder="Description"></textarea><br><br>
                         <span class="lat-long-input"><input type="text" placeholder="Latitude"><input type="text" placeholder="Longitude"></span><br><br>
                         <span class="buttons"><span class="image-upload"><input type="file">
-                        <input type="button" value="Upload Red Flag Image"></span><br><br><hr>
-                        <span class="sub"><input type="button" value="submit Red Flag"></span></span>
+                        <input type="button" value="Upload Image"></span><br><br><hr>
+                        <span class="sub"><input type="button" value="submit"></span></span>
                     </div>
                 </form>
             </div>
