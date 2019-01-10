@@ -3,6 +3,7 @@ from api.models.ireportermodels import BaseUser, User, IreporterDb
 from api.utilities import make_id, check_user, check_email, check_paswd
 import uuid
 import datetime
+from werkzeug.security import generate_password_hash, check_password_hash
 
 new_user = IreporterDb()
 
@@ -36,8 +37,9 @@ class UserController:
                 "status": 400,
                 "message": "password should be more than 8 characters"
             }),400
-
-        user = User(BaseUser(other_names, username, password, registered),
+        
+        hashed_password = generate_password_hash(user_data.get('password'), method='sha256')
+        user = User(BaseUser(other_names, username, hashed_password, registered),
         user_id, first_name, last_name, email, is_admin)
         
         new_user.add_user(user)
