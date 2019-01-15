@@ -1,4 +1,3 @@
-from flask import jsonify
 class BaseUser:
     """model class for user"""
     def __init__(self, other_names, username, password, registered):

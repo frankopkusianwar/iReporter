@@ -1,5 +1,5 @@
-from flask import request, Response, json, jsonify
-from api.models.ireportermodels import BaseIncident, Incident, IreporterDb
+from flask import request, Response, jsonify
+from api.models.models import BaseIncident, Incident, IreporterDb
 from api.utilities import make_id, check_inc
 import uuid
 import datetime

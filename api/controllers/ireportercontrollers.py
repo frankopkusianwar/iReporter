@@ -1,5 +1,5 @@
-from flask import request, Response, json, jsonify
-from api.models.ireportermodels import BaseUser, User, IreporterDb
+from flask import request, Response, jsonify
+from api.models.models import BaseUser, User, IreporterDb
 from api.utilities import make_id, check_user, check_email, check_paswd
 import uuid
 import datetime
