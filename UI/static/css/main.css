@@ -45,7 +45,7 @@ body{
     margin-left: auto;
     margin-right: auto;
     padding: 2%;
-    width: 60%;
+    width: 40%;
 }
 
 .form-content input{
@@ -85,6 +85,13 @@ body{
 }
 
 .redflag-content input{
+    width: 100%;
+    border: 2px solid rgb(37, 96, 151);
+    border-radius: 2em;
+    padding: 1%;
+}
+
+.redflag-content select{
     width: 100%;
     border: 2px solid rgb(37, 96, 151);
     border-radius: 2em;

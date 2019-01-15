@@ -2,7 +2,6 @@
     <head>
         <title>login</title>
         <link rel="stylesheet" href="static/css/main.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script type="text/javascript" src="static/js/main.js"></script>
     </head>
     <body>
@@ -21,12 +20,11 @@
                 <form>
                     <div class="form-content">
                         <h1>Login</h1>
-                        <input type="text" placeholder="Email"><br>
-                        <input type="password" placeholder="Password"><br>
-                        <a href="createflag.html"><input type="button" value="Login"></a><br>
-                        <span class="login-text"><h2>OR</h2>
-                            <p><a href="signup.html">signup here</p></a>
-                            <p><a href="adminviewrecords.html">Admin dashboard</p></a>
+                        <input type="text" placeholder="Email" name="email" id="email"><br>
+                        <input type="password" placeholder="Password" name="password" id="password"><br>
+                        <a href="#"><input type="button" value="Login" id="submit" onclick="login()"></a><br>
+                        <span class="login-text">
+                            <p>Already have an acccount, <a href="signup.html">signup here</p></a>
                         </span>
                     </div>
                 </form>
