@@ -10,6 +10,10 @@ clone the project to your computer and improve on it
 - https://github.com/frankopkusianwar/iReporter.git
 ## Project link
 - https://github.com/frankopkusianwar/iReporter/tree/develop
+## gh-pages link
+## How to login
+-As a USER username: user and password: user
+-As an ADMIN username: admin and password: admin
 ## Required features
 - Users can create an account and log in.
 - Users can create a red-flag record (An incident linked to corruption).
