@@ -30,10 +30,11 @@ class IncidentController:
         new_inc.add_incident(incident)
 
         return jsonify({
+            "data": [{
             "id": incident_id,
             "status": 201,
-            "message": "red-flag created successfully", 
-            "data": incident.incident_json()
+            "message": "created red-flag record", 
+            }]
         }), 201
 
     def get_inc(self):
@@ -49,17 +50,18 @@ class IncidentController:
             return jsonify({"status":200,"message":"requested red-flag-id not found"})
         return jsonify({
             "status": 200,
-            "data": new_inc.get_specific_incident(particular_id)
+            "data": [new_inc.get_specific_incident(particular_id)]
         })
 
     def del_spec_inc(self, del_id):
         if new_inc.delete_incident(del_id) == None:
             return jsonify({"status":200,"message":"the id to delete does not exist or status is under investigation, rejected, or resolved"})
         return jsonify({
+            "data": [{
             "id": del_id,
             "status": 200,
-            "data": new_inc.get_incidents(),
-            "message": "red-flag deleted successfully"
+            "message": "red-flag record has been deleted"
+            }]
         })
 
     def create_comment(self, comm_id):
@@ -68,10 +70,11 @@ class IncidentController:
         if new_inc.add_comment(comm_id,new_comment) == None:
             return jsonify({"status":200,"message":"the red-flag you're trying to comment on  does not exist"})
         return jsonify({
+            "data": [{
             "id": comm_id,
             "status":200,
-            "data": new_inc.get_specific_incident(comm_id),
-            "message": "comment added successfully"
+            "message": "updated red-flag record's comment"
+            }]
         })   
 
     def update_loc(self, loc_id):
@@ -80,10 +83,11 @@ class IncidentController:
         if new_inc.edit_red_flag(loc_id,new_loc) == None:
             return jsonify({"status":200,"message":"the id does not exist or status is under investigation, rejected, or resolved"})
         return jsonify({
+            "data": [{
             "id": loc_id,
             "status":200,
-            "data": new_inc.get_specific_incident(loc_id),
-            "message": "location updated successfully"
+            "message": "updated red-flag record's location"
+            }]
         })
         
     def chng_status(self, st_id):

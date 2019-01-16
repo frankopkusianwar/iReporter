@@ -45,8 +45,9 @@ class UserController:
         new_user.add_user(user)
 
         return jsonify({
+            "data": [{
             "id": user_id,
             "status": 201,
             "message": "user created successfully", 
-            "data": user.make_json()
+            }]
         }), 201
