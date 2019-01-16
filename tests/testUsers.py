@@ -1,5 +1,5 @@
 import unittest
-from api.models.ireportermodels import BaseUser, User, BaseIncident, Incident, IreporterDb
+from api.models.models import BaseUser, User, BaseIncident, Incident, IreporterDb
 from api import app
 from flask import request
 import json
@@ -18,7 +18,7 @@ class TestUsers(unittest.TestCase):
             data=json.dumps(user_data)
         )
         message = json.loads(response.data.decode())
-        self.assertEqual(message['message'],
+        self.assertEqual(message['data'][0]['message'],
                          'user created successfully')
 
     def test_user_empty_fields(self):

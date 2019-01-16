@@ -19,8 +19,10 @@ class UserController:
         password = user_data.get('password')
         registered = datetime.datetime.today()
         is_admin = False
-        val_users = [first_name, last_name, other_names, username,email,password]
-        if check_user(val_users) == "invalid":
+        #public_id = str(uuid.uuid4())
+
+        validate_user = [first_name, last_name, other_names, username,email,password]
+        if check_user(validate_user) == "invalid":
             return jsonify({
                 "status": 400,
                 "message": "please fill all fields"

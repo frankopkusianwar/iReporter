@@ -14,6 +14,7 @@ class User:
         self.last_name = last_name
         self.email = email
         self.is_admin = is_admin
+        #self.public_id = public_id
 
     def make_json(self):
         info ={
@@ -25,7 +26,8 @@ class User:
             "username": self.base.user_name,
             "registered": self.base.registered,
             "password": self.base.password,
-            "isAdmin": self.is_admin
+            "isAdmin": self.is_admin,
+            #"publicId": self.public_id
         }
         return info
 

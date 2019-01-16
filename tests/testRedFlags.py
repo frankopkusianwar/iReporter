@@ -1,5 +1,5 @@
 import unittest
-from api.models.ireportermodels import BaseUser, User, BaseIncident, Incident, IreporterDb
+from api.models.models import BaseUser, User, BaseIncident, Incident, IreporterDb
 from api import app
 from flask import request
 import json
@@ -19,8 +19,8 @@ class TestEndpoints(unittest.TestCase):
             headers={"userId": 2}
         )
         message = json.loads(response.data.decode())
-        self.assertEqual(message['message'],
-                         'red-flag created successfully')
+        self.assertEqual(message['data'][0]['message'],
+                         'created red-flag record')
 
     def test_check_invalid_incident_type(self):
         incident = Incident(BaseIncident(['images','image'], ['videos','videos'], "25-nov-2018", 2, "comment"),
@@ -76,15 +76,15 @@ class TestEndpoints(unittest.TestCase):
         ) 
         response = self.test_client.patch('api/v1/red-flags/{}/comment'.format(1), content_type='application/json', data=json.dumps({"comment":"this is a comment"}))
         message = json.loads(response.data.decode())
-        self.assertEqual(message['message'],
-                         'comment added successfully')
+        self.assertEqual(message['data'][0]['message'],
+                         "updated red-flag record's comment")
 
     def test_update_location(self):
         resp = self.test_client.patch('api/v1/red-flags/{}/location'.format(1), content_type='application/json', data=json.dumps({"location":{"latitude":"13.00","longitude":"13.00"}}))
         assert(resp.status_code) == 200
         message = json.loads(resp.data.decode())
-        self.assertEqual(message['message'],
-                         'location updated successfully')
+        self.assertEqual(message['data'][0]['message'],
+                         "updated red-flag record's location")
 
     def test_update_status(self):
         resp = self.test_client.patch('api/v1/red-flags/{}/status'.format(1), content_type='application/json', data=json.dumps({"location":"resolved"}))
@@ -96,8 +96,8 @@ class TestEndpoints(unittest.TestCase):
     def test_delete_red_flag(self):
         response = self.test_client.delete('api/v1/red-flags/{}'.format(2))
         message = json.loads(response.data.decode())
-        self.assertEqual(message['message'],
-                         'red-flag deleted successfully')
+        self.assertEqual(message['data'][0]['message'],
+                         'red-flag record has been deleted')
 
     #check for a red-flag id that does not exist
     def test_check_specific_red_flag_does_not_exist(self): 
