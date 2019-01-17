@@ -37,6 +37,14 @@ clone the project to your computer and improve on it
 - python 3.7 -programming language that can be used on any mordern operating system
 - Virtual environment -allows you to have an issolated evnvironment for your project where you can install all your dependencies
 - Flask -a python framework for that can be used to add functionality to your API endpoints
+## Functionality
+- `create red-flag record` Enables user to create a red-flag record
+- `Get all red-flags` Enables user to view all red-flag records
+- `Get single red-flag` Enables user  to get a specific red-flag record
+- `update comment` Enables  user to add a comment to a red-flag record 
+- `create new user` Enables  users to create accounts
+- `update location` Enables  users to update specific red-flag location 
+- `delete red-flag`Enables users to delete red-flag records
 ## Heroku Link
 - https://ireporterapp.herokuapp.com/api/v1/red-flags
 ## Installation
