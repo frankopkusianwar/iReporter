@@ -71,6 +71,16 @@ pytest filename
 This API is versioned using url versioning starting, with the letter 'v'
 This is version one"v1" of the API
 ```
+## End Points
+|           End Point                      |     Functionality                                   |
+|------------------------------------------|-----------------------------------------------------|
+|     POST api/v1/red-flags                  |creates a new red-flag record                  |  
+|     GET  api/v1/red-flags                  |get all red-flag records                    |   
+|     GET  api/v1/red-flags/<red-flag-id>          |get a specific red-flag record                 |  
+|     PATCH api/v1/red-flags/<red-flag-id>/comments           |adds a comment to a red-flag record      |
+|     PATCH red-flags/<red-flag-id>/location             |update red-flag record location|
+|     POST api/v1/users                    |registers users                                      |
+|     DELETE GET  api/v1/red-flags/<red-flag-id>              |delete red-flag record                                     | 
 
 ## Authors
 - Okiror Frank
