@@ -1,5 +1,5 @@
-from flask import request, Response, jsonify
-from api.models.models import BaseIncident, Incident, IreporterDb
+from flask import request, jsonify
+from api.models.models import Incident, IreporterDb
 from api.utilities import make_id, check_inc
 import uuid
 import datetime
@@ -18,14 +18,15 @@ class IncidentController:
         images = incident_data.get('images')
         videos = incident_data.get('videos')
         comment = ""
+        public_incident_id = str(uuid.uuid4())
         validate_fields = [location, images, videos]
         if check_inc(validate_fields,location,images,videos) == "invalid":
             return jsonify({"status": 400, "message":"please fill all fields"}),400
         if incident_type != "red-flag" and incident_type != "intervention":
             return jsonify({"status":400,"message":"please enter incidentType as red-flag or intervention"}),400
 
-        incident = Incident(BaseIncident(images, videos, created_on, created_by,comment),
-        incident_id, incident_type, location, status)
+        
+        incident = Incident(incident_id, incident_type, location, status, images, videos, created_on, created_by,comment, public_incident_id)
         
         new_incident.add_incident(incident)
 

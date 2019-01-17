@@ -1,5 +1,5 @@
-from flask import request, Response, jsonify
-from api.models.models import BaseUser, User, IreporterDb
+from flask import request, jsonify
+from api.models.models import User, IreporterDb
 from api.utilities import make_id, check_user, check_email, check_paswd
 import uuid
 import datetime
@@ -19,7 +19,7 @@ class UserController:
         password = user_data.get('password')
         registered = datetime.datetime.today()
         is_admin = False
-        #public_id = str(uuid.uuid4())
+        public_user_id = str(uuid.uuid4())
 
         validate_user = [first_name, last_name, other_names, username,email,password]
         if check_user(validate_user) == "invalid":
@@ -41,8 +41,8 @@ class UserController:
             }),400
         
         hashed_password = generate_password_hash(user_data.get('password'), method='sha256')
-        user = User(BaseUser(other_names, username, hashed_password, registered),
-        user_id, first_name, last_name, email, is_admin)
+        user = User(other_names, username, hashed_password, registered,
+        user_id, first_name, last_name, email, is_admin, public_user_id)
         
         new_user.add_user(user)
 

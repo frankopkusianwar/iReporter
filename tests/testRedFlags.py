@@ -1,5 +1,5 @@
 import unittest
-from api.models.models import BaseUser, User, BaseIncident, Incident, IreporterDb
+from api.models.models import User, Incident, IreporterDb
 from api import app
 from flask import request
 import json
@@ -9,8 +9,7 @@ class TestEndpoints(unittest.TestCase):
         self.test_client = app.test_client(self)
 
     def test_create_incident(self):
-        incident = Incident(BaseIncident(['images','image'], ['videos','videos'], "25-nov-2018", 2, "comment"),
-            1, "red-flag", {"latitude":"120.00","longitude":"120.00"}, "draft")
+        incident = Incident(1, "red-flag", {"latitude":"120.00","longitude":"120.00"}, "draft", ['images','image'], ['videos','videos'], "25-nov-2018", 2, "comment", "gfhf353545jhg6")
         incident_data = incident.incident_json()
         response = self.test_client.post(
             'api/v1/red-flags',
@@ -23,8 +22,7 @@ class TestEndpoints(unittest.TestCase):
                          'created red-flag record')
 
     def test_check_invalid_incident_type(self):
-        incident = Incident(BaseIncident(['images','image'], ['videos','videos'], "25-nov-2018", 2, "comment"),
-            1, "invalid-type", {"latitude":"120.00","longitude":"120.00"}, "draft")
+        incident = Incident(1, "red", {"latitude":"120.00","longitude":"120.00"}, "draft", ['images','image'], ['videos','videos'], "25-nov-2018", 2, "comment", "fgfhfhf768sus88")
         incident_data = incident.incident_json()
         response = self.test_client.post(
             'api/v1/red-flags',
@@ -37,8 +35,7 @@ class TestEndpoints(unittest.TestCase):
                          'please enter incidentType as red-flag or intervention')
 
     def test_check_empty_incident_fields(self):
-        incident = Incident(BaseIncident("", "", "", 2, ""),
-            1, "invalid-type", "", "")
+        incident = Incident(1, "invalid-type", "", "", "", "", "", 2, "", "fgfhfhf768sus88")
         incident_data = incident.incident_json()
         response = self.test_client.post(
             'api/v1/red-flags',
@@ -65,8 +62,7 @@ class TestEndpoints(unittest.TestCase):
 
     #test whether a comment is added osuccessfully
     def test_add_comment_to_red_flag(self):
-        incident = Incident(BaseIncident(['images','image'], ['videos','videos'], "25-nov-2018", 2, "comment"),
-            1, "red-flag", {"latitude":"120.00","longitude":"120.00"}, "draft")
+        incident = Incident(1, "red-flag", {"latitude":"120.00","longitude":"120.00"}, "draft", ['images','image'], ['videos','videos'], "25-nov-2018", 2, "comment", "fgfhfhf768sus88")
         inc_data = incident.incident_json()
         self.test_client.post(
             'api/v1/red-flags',
